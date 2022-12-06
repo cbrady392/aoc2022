@@ -11,21 +11,19 @@ def create_stacks(lines):
     lines.reverse()
     for line in lines:
         for index, i in enumerate(range(1, 34, 4)):
-            c = line[i:i+1]
+            c = line[i]
             if(c != ' ' ):
                 stacks[index+1].append(c)
     return stacks
 
 def parse_instruction(line):
-    pattern = r'\d+'
-    m = re.findall(pattern, line)
+    m = re.findall(r'\d+', line)
     return int(m[0]), int(m[1]), int(m[2])
     
     
 def main():
     all_lines = get_input()
-    init_stacks = all_lines[:8]
-    stacks = create_stacks(init_stacks)
+    stacks = create_stacks(all_lines[:8])
     stacks2 = {key: value[:] for key, value in stacks.items()}
     
     instructions = all_lines[10:]
@@ -33,7 +31,7 @@ def main():
     # instructions = instructions[:5]
     # print(instructions)
     
-    # Part 1 - Crane Mover 9000
+    # Part 1 - Crate Mover 9000
     for instr in instructions:
         amount, source, dest = parse_instruction(instr)
         for i in range(0, amount):
@@ -46,7 +44,7 @@ def main():
         print(v[-1], sep='', end='')
         
     print('\n----')
-    # Part 2 - Crane Mover 9000
+    # Part 2 - Crate Mover 9001
     stacks = stacks2
 
     for instr in instructions:
